@@ -1,26 +1,18 @@
-import ProductItem from './components/ProductItem.js/ProductItem';
-import data from './data';
+import Footer from "./components/Footer/Footer";
+import Header from "./components/Header/Header";
+import { Switch, Route } from "react-router-dom";
+import HomeScreen from "./components/HomeScreen/HomeScreen";
+import ProductScreen from "./components/ProductScreen/ProductScreen";
 
 function App() {
   return (
     <div className="grid-container">
-      <header className="row">
-        <div>
-          <a className="brand" href="/">amazing shop</a>
-        </div>
-        <div>
-          <a href="/cart">Cart</a>
-          <a href="/signin">Sign In</a>
-        </div>
-      </header>
-      <main>
-        <div>
-          <div className="row center">
-          {data.products.map(product => <ProductItem key={product._id} product={product} />)}
-          </div>
-        </div>
-      </main>
-      <footer className="row center">All right reserved</footer>
+      <Header />
+      <Switch>
+        <Route exact path="/" component={HomeScreen} />
+        <Route exact path="/product/:id" component={ProductScreen} />
+      </Switch>
+      <Footer />
     </div>
   );
 }
