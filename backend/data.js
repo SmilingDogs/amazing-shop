@@ -18,7 +18,7 @@ const data = {
       category: "Shirts",
       image: "https://res.cloudinary.com/blackie2020/image/upload/v1617958452/Beautiful-Cat-cats-16121794-1280-800_hgmr2d.jpg",
       price: 100,
-      countInStock: 20,
+      countInStock: 8,
       brand: "Adidas",
       rating: 4.0,
       numReviews: 12,
