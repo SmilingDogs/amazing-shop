@@ -105,10 +105,10 @@ a.brand {
   align-items: flex-start;
 }
 .col-1 {
-  flex: 1.5 1 25rem;
+  flex: 2 1 35rem;
 }
 .col-2 {
-  flex: 1 1 20rem;
+  flex: 1 1 35rem;
 }
 
 /** Image */
@@ -116,8 +116,10 @@ img {
   border-radius: 0.5rem;
 }
 img.medium {
+  height: 19rem;
   max-width: 29rem;
   width: 100%;
+  object-fit: cover;
 }
 img.large {
   width: 100%;
@@ -157,9 +159,22 @@ span.reviews {
 .success {
   color: #20a020;
 }
-.error {
+.danger {
   color: #a02020;
 }
 .location {
   font-size: 1.5rem;
+}
+.alert {
+  padding: 1rem;
+  border: 0.1rem solid transparent;
+  border-radius: 0.5rem;
+}
+.alert-info {
+  color:#2020a0;
+  background-color: #e0e0ff;
+}
+.alert-danger {
+  color:#a02020;
+  background-color: #ffe0e0e0;
 }
