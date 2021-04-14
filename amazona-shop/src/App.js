@@ -4,10 +4,10 @@ import { Switch, Route } from "react-router-dom";
 import HomeScreen from "./components/HomeScreen/HomeScreen";
 import ProductScreen from "./components/ProductScreen/ProductScreen";
 import CartScreen from "./components/CartScreen/CartScreen";
-// import PrimarySearchAppBar from "./components/NavBarMaterial/PrimarySearchAppBar";
-// import HigherOrderComponent from "./components/ButtonMaterial/MyButton";
+
 
 function App() {
+
   return (
     <div className="grid-container">
      <Header />

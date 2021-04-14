@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { productDetails } from "../../store/actions/product-actions";
+import { addToCartAction } from "../../store/actions/cart-actions";
+import { productDetailsRequest } from "../../store/actions/product-actions";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import Loader from "../Loader/Loader";
 import Rating from "../Rating/Rating";
@@ -16,10 +17,11 @@ function ProductScreen({ history }) {
   );
 
   useEffect(() => {
-    dispatch(productDetails(productID));
+    dispatch(productDetailsRequest(productID));
   }, [dispatch, productID]);
 
   const addToCartHandler = () => {
+    dispatch(addToCartAction(productID, qty))
     history.push(`/cart/${productID}?qty=${qty}`)
 
   }
@@ -87,6 +89,7 @@ function ProductScreen({ history }) {
                         <input className="cartItem__input"
                           type="number"
                           id="qty"
+                          min={1}
                           max={+product.countInStock}
                           name="qty"
                           value={qty}

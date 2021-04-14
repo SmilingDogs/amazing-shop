@@ -1,8 +1,8 @@
 import React from 'react'
 
-function ErrorMessage({loadingError, variant}) {
+function ErrorMessage({children, variant}) {
     return (
-        <div className={`alert alert-${variant || 'info'}`}>{loadingError}</div>
+        <div className={`alert alert-${variant || 'info'}`}>{children}</div>
     )
 }
 

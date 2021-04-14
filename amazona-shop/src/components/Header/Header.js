@@ -1,8 +1,10 @@
-import React, { memo } from "react";
+import React from "react";
 import Badge from "@material-ui/core/Badge";
-// import MailIcon from "@material-ui/icons/Mail";
+import {Link} from 'react-router-dom';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
 import { makeStyles } from "@material-ui/core";
+import { connect } from "react-redux";
 
 const useStyles = makeStyles(theme => ({
   size: {
@@ -18,28 +20,33 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function Header() {
-  console.log("Rendering Header!");
-  const classes = useStyles();
+function Header({cart}) {
 
+  const classes = useStyles();
 
   return (
     <header className="row">
       <div>
-        <a className="brand" href="/">
+        <Link className="brand" to="/">
           amazing shop
-        </a>
+        </Link>
       </div>
-      <div>
-        <a href="/cart">
-        <Badge badgeContent={3} color="secondary" classes={{ badge: classes.size }}>
+      <div className="align">
+        <Link to="/cart">
+        <Badge badgeContent={cart.length} color="secondary" classes={{ badge: classes.size }}>
           <ShoppingCartIcon className={classes.icon} />
         </Badge>
-        </a>
-        <a href="/signin">Sign In</a>
+        </Link>
+        <Link to="/signin">
+          <AssignmentIndIcon className={classes.icon}/>
+        </Link>
       </div>
     </header>
   );
 }
-
-export default memo(Header);
+const mapStateToProps = (state) => {
+  return {
+    cart: state.cartDetails.cart
+  }
+}
+export default connect(mapStateToProps)(Header);

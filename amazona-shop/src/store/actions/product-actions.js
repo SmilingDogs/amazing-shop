@@ -11,7 +11,7 @@ import axios from "axios";
 export const loadProducts = () => async (dispatch) => {
   dispatch({ type: PRODUCTS_REQUEST });
   try {
-    await axios.get("/api/products").then((res) => {
+    await axios("/api/products").then((res) => {
       dispatch({ type: PRODUCTS_REQUEST_SUCCESS, payload: res.data });
     });
   } catch (err) {
@@ -19,10 +19,10 @@ export const loadProducts = () => async (dispatch) => {
   }
 };
 
-export const productDetails = (productID) => async (dispatch) => {
+export const productDetailsRequest = (productID) => async (dispatch) => {
   dispatch({ type: PRODUCT_DETAILS_REQUEST, payload: productID });
   try {
-    await axios.get(`/api/products/${productID}`).then((res) => {
+    await axios(`/api/products/${productID}`).then((res) => {
       dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: res.data });
     });
   } catch (err) {
