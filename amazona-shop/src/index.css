@@ -122,10 +122,10 @@ a.brand {
   align-items: flex-start;
 }
 .col-1 {
-  flex: 1 1 25rem;
+  flex: 1 1 45rem;
 }
 .col-2 {
-  flex: 2 1 40rem;
+  flex: 2 1 25rem;
 }
 .min-30 {
   min-width: 30rem;
@@ -194,4 +194,49 @@ img.large {
 .align {
   display: flex;
   align-items: center;
+}
+
+/* Form */
+.form {
+  max-width: 60rem;
+  margin: 0 auto;
+}
+.form > div {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+}
+.form label {
+  margin: 1rem 0;
+  display: block;
+}
+/** User greeting */
+.greeting {
+  color: #fff;
+
+}
+.greeting:hover {
+  color: #ff8000;
+  cursor: pointer;
+}
+
+/** Dropdown */
+.dropdown {
+  display: inline-block;
+  position: relative;
+}
+.dropdown-content {
+  position: absolute;
+  display: none;
+  right: 0;
+  min-width: 12rem;
+  padding: 1rem;
+  z-index: 1;
+  background-color: #203040;
+  margin: 0;
+  margin-top: 0.4rem;
+  border-radius: 0.5rem;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
 }

@@ -1,15 +1,15 @@
 import express from "express";
 import expressAsyncHandler from "express-async-handler";
-import data from "../data.js"; //todo mandatory! .js!
-import Product from "../models/productModel.js"; //todo mandatory! .js!
+import data from "../data.js"; //todo mandatory .js!
+import Product from "../models/productModel.js"; //todo mandatory .js!
 
 const productRouter = express.Router();
 
 productRouter.get(
   "/",
   expressAsyncHandler(async (req, res) => {
-    const products = await Product.find({});
-    res.send(products);
+    const products = await Product.find({});// todo Product.find({}) === return all products (objects)
+    res.send(products); //todo === отправить на Фронт
   })
 );
 
@@ -17,7 +17,7 @@ productRouter.get(
   "/seed",
   expressAsyncHandler(async (req, res) => {
     // await Product.deleteMany({}) //* удаляет предыдущие продукты, чтобы небыло дубликатов и ошибки
-    const createdProducts = await Product.insertMany(data.products); //* inserts users array [data.users] inside users Collection in MongoDB
+    const createdProducts = await Product.insertMany(data.products); //* inserts products array [data.products] inside Product Collection in MongoDB
     res.send({ createdProducts });
   })
 );
@@ -33,5 +33,6 @@ productRouter.get(
     }
   })
 );
+
 
 export default productRouter;

@@ -13,7 +13,7 @@ function HomeScreen() {
   useEffect(() => {
     dispatch(loadProducts());
   }, [dispatch]);
-
+  //todo useEffect вызывает загрузку продуктовых карточек
   return (
     <main>
       {isLoading ? (

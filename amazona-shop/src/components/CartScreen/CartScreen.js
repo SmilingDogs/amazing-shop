@@ -7,25 +7,25 @@ import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
 const mapStateToProps = (state) => {
   return {
-    cart: state.cartDetails.cart,
+    cart: state.cart.data, //todo state.<название редюсера>.<название перменной>
   };
 };
 
 function CartScreen({ dispatch, cart }) {
-  // const productID = useParams().id;
-  // const qty = location.search ? +location.search.split("=")[1] : 1;
-  // //* need to check if productID exists. We need useEffect for async calling of the check
-
-  // useEffect(() => {
-  //   if (productID) {
-  //     dispatch(addToCartAction(productID, qty));
-  //   }
-  // }, [productID, dispatch, qty]);
+  //! dispatch есть в пропсах, если Redux подклчен с помощью connect()
+  //* const productID = useParams().id;
+  //* const qty = location.search ? +location.search.split("=")[1] : 1;
+  //* need to check if productID exists. We need useEffect for async calling of the check
+  //* useEffect(() => {
+  //*   if (productID) {
+  //*    dispatch(addToCartAction(productID, qty));
+  //*   }
+  //* }, [productID, dispatch, qty]);
 
   const removeFromCartHandler = (removeID) => {
-    //*delete action
     dispatch(removeFromCartAction(removeID))
   }
+
   return (
     <div className="row top">
       <div className="col-2">

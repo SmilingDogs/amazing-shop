@@ -8,9 +8,10 @@ const userSchema = mongoose.Schema(
     isAdmin: { type: Boolean, default: false, required: true },
   },
   {
-    timestamps: true, //* timestamps - only lowecase!
+    timestamps: true, //! timestamps - only lowercase!
   },
 );
 const User = mongoose.model("User", userSchema)
 
 export default User;
+//todo создали модель User

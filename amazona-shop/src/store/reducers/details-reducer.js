@@ -6,17 +6,17 @@ import {
 
 const INITIAL_STATE = {
   isLoading: "",
-  product: {},
+  data: {},
   error: "",
 };
 
-const productDetailsReducer = (state = INITIAL_STATE, action) => {
+const reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case PRODUCT_DETAILS_REQUEST:
       return { ...state, isLoading: true };
 
     case PRODUCT_DETAILS_SUCCESS:
-      return { ...state, isLoading: false, product: action.payload };
+      return { ...state, isLoading: false, data: action.payload };
 
     case PRODUCT_DETAILS_FAIL:
       return { ...state, isLoading: false, error: action.payload };
@@ -26,4 +26,4 @@ const productDetailsReducer = (state = INITIAL_STATE, action) => {
   }
 };
 
-export default productDetailsReducer;
+export default reducer;

@@ -10,7 +10,7 @@ const INITIAL_STATE = {
   error: "",
 };
 
-const productListReducer = (state = INITIAL_STATE, action) => {
+const reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case PRODUCTS_REQUEST:
       return { ...state, isLoading: true };
@@ -26,4 +26,4 @@ const productListReducer = (state = INITIAL_STATE, action) => {
   }
 };
 
-export default productListReducer;
+export default reducer;

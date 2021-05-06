@@ -1,6 +1,6 @@
 import { CART_ADD_ITEM, CART_REMOVE_ITEM } from "./actionTypes";
 import axios from "axios";
-//* getState 2parameter -> to read the cart[] value from Store.
+//* getState 2 parameter -> to read the cart[] value from Store.
 
 export const addToCartAction = (productID, qty) => (dispatch, getState ) => {
     axios(`/api/products/${productID}`).then(res => {
@@ -16,13 +16,13 @@ export const addToCartAction = (productID, qty) => (dispatch, getState ) => {
       },
     });
   });
-  localStorage.setItem('cart', JSON.stringify(getState().cartDetails.cart))
-  
+  localStorage.setItem('cart', JSON.stringify(getState().cart.data))
+
 };
 export const removeFromCartAction = (removeID) => (dispatch, getState) => {
     dispatch({
       type: CART_REMOVE_ITEM,
       payload: removeID //*to Remove item from Cart we just need to pass removeID to reducer
     });
-  localStorage.setItem('cart', JSON.stringify(getState().cartDetails.cart))
+  localStorage.setItem('cart', JSON.stringify(getState().cart.data))
 }
