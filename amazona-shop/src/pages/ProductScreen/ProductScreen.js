@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { addToCartAction } from "../../store/actions/cart-actions";
 import { loadProductDetails } from "../../store/actions/product-actions";
-import ErrorMessage from "../ErrorMessage/ErrorMessage";
-import Loader from "../Loader/Loader";
-import Rating from "../Rating/Rating";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+import Loader from "../../components/Loader/Loader";
+import Rating from "../../components/Rating/Rating";
 
 function ProductScreen({ history }) {
   const [qty, setQty] = useState(1)

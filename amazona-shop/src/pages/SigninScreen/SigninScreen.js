@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import Loader from "../Loader/Loader";
-import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import Loader from "../../components/Loader/Loader";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import { Link } from "react-router-dom";
-import { register } from "../../store/actions/user-actions";
+import { signin } from "../../store/actions/user-actions";
 import { connect } from "react-redux";
+import { loadingSigninSelector, userSigninSelector, errorSigninSelector } from "../../store/selectors/user-selectors";
 
-function RegisterScreen({
+function SigninScreen({
   history,
   location,
   dispatch,
@@ -14,14 +15,13 @@ function RegisterScreen({
   loading,
 }) {
   const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
 
   const redirect = location.search ? location.search.split("=")[1] : "/";
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(register(name, email, password));
+    dispatch(signin(email, password));
   };
 
   useEffect(() => {
@@ -33,20 +33,10 @@ function RegisterScreen({
     <div>
       <form className="form" onSubmit={submitHandler}>
         <div>
-          <h1>Register</h1>
+          <h1>Sign In</h1>
         </div>
         {loading && <Loader />}
         {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
-        <div>
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            id="name"
-            placeholder="Enter name"
-            required
-            onChange={(e) => setName(e.target.value)}
-          ></input>
-        </div>
         <div>
           <label htmlFor="email">Email address</label>
           <input
@@ -70,24 +60,24 @@ function RegisterScreen({
         <div>
           <label />
           <button className="primary" type="submit">
-            Register
+            Sign In
           </button>
         </div>
         <div>
-          <label />
-          <div>
-            Already have an acount? <Link to="/signin">Sign-In</Link>
+            New customer?
+            <Link to={`/register?redirect=${redirect}`}>
+              Create your account
+            </Link>
           </div>
-        </div>
       </form>
     </div>
   );
 }
 const mapStateToProps = (state) => {
   return {
-    userInfo: state.userRegister.userInfo,
-    loading: state.useRegister.loading,
-    error: state.userRegister.error,
+    userInfo: userSigninSelector(state),
+    loading: loadingSigninSelector(state),
+    error: errorSigninSelector(state),
   };
 };
-export default connect(mapStateToProps)(RegisterScreen);
+export default connect(mapStateToProps)(SigninScreen);

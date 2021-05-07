@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 // import data from "../../data";
-import ProductItem from "../ProductItem/ProductItem";
-import Loader from "../Loader/Loader";
-import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import ProductItem from "../../components/ProductItem/ProductItem";
+import Loader from "../../components/Loader/Loader";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import { useSelector, useDispatch } from "react-redux";
 import { loadProducts } from "../../store/actions/product-actions";
 

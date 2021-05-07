@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 // import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { addToCartAction, removeFromCartAction } from "../../store/actions/cart-actions";
-import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 
 const mapStateToProps = (state) => {
   return {
@@ -11,8 +11,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-function CartScreen({ dispatch, cart }) {
-  //! dispatch есть в пропсах, если Redux подклчен с помощью connect()
+function CartScreen({ dispatch, history, cart }) {
+  //! dispatch, location, history есть в пропсах, если Redux подклчен с помощью connect()
   //* const productID = useParams().id;
   //* const qty = location.search ? +location.search.split("=")[1] : 1;
   //* need to check if productID exists. We need useEffect for async calling of the check
@@ -25,7 +25,9 @@ function CartScreen({ dispatch, cart }) {
   const removeFromCartHandler = (removeID) => {
     dispatch(removeFromCartAction(removeID))
   }
-
+  const checkoutHandler = () => {
+    history.push('/signin?redirect=shipping'); //todo переход на страницу http://localhost:3000/signin?redirect=shipping'
+  };
   return (
     <div className="row top">
       <div className="col-2">
@@ -92,7 +94,7 @@ function CartScreen({ dispatch, cart }) {
             <li>
               <button
                 type="button"
-                onClick={() => console.log('Click!')}
+                onClick={checkoutHandler}
                 className="primary block"
                 disabled={cart.length === 0}
               >
