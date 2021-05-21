@@ -4,7 +4,7 @@ import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
-    <div className="grid-container">
+    <div>
       <Header />
       <Approutes />
       <Footer />

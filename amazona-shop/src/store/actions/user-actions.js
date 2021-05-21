@@ -10,46 +10,48 @@ import {
 } from "./actionTypes";
 
 export const register = (name, email, password) => async (dispatch) => {
-  dispatch({ type: USER_REGISTER_REQUEST, payload: { name, email, password } }); //todo отправляем ЗНАЧЕНИЯ email, password (деструктурируем email, password)
+  dispatch({ type: USER_REGISTER_REQUEST, payload: { name, email, password } }); //todo отправляем ЗНАЧЕНИЯ name, email, password ввиде Объекта
 
   try {
-    //todo 1param === "/api/users/signin", 2 param is Объект с email and password
+    //todo 1param === "/api/users/register", 2 param - Объект
     const { data } = await axios.post("/api/users/register", {
       name,
       email,
       password,
     });
-    // console.log(data); //*data === Object user from Backend
+    //* data === Object User from Backend
     dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
     dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
     localStorage.setItem("userInfo", JSON.stringify(data));
   } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
     dispatch({
       type: USER_REGISTER_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
+      payload: message,
     });
   }
 };
 
 export const signin = (email, password) => async (dispatch) => {
-  dispatch({ type: USER_SIGNIN_REQUEST, payload: { email, password } }); //todo отправляем ЗНАЧЕНИЯ email, password (деструктурируем email, password)
+  dispatch({ type: USER_SIGNIN_REQUEST, payload: { email, password } }); //todo отправляем ЗНАЧЕНИЯ email, password ввиде Объекта
 
   try {
-    //todo 1param === "/api/users/signin", 2 param is Объект с email and password
+    //todo 1param === "/api/users/signin", 2 param is {email, password} obj
     const { data } = await axios.post("/api/users/signin", { email, password });
-    // console.log(data); //*data === Object user from Backend
+    //*data === Object user from Backend
     dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
     localStorage.setItem("userInfo", JSON.stringify(data));
   } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
     dispatch({
       type: USER_SIGNIN_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
+      payload: message,
     });
   }
 };

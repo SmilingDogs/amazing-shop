@@ -1,20 +1,20 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import CheckoutSteps from '../../components/CheckoutSteps/CheckoutSteps';
-
+import React from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import CheckoutSteps from "../../components/CheckoutSteps/CheckoutSteps";
 
 export default function PlaceOrderScreen(props) {
 
-  const {data, shippingDetails, paymentMethod} = useSelector((state) => state.cart);
+  const { data, shippingDetails, paymentMethod } = useSelector((state) => state.cart);
+
   if (!paymentMethod) {
-    props.history.push('/payment');
+    props.history.push("/payment");
   }
   const toPrice = (num) => Number(num.toFixed(2)); // 5.123 => "5.12" => 5.12
 
-  let itemsPrice = toPrice(data.reduce((a, c) => a + c.qty * c.price, 0))
-  let shippingPrice = itemsPrice > 200 ? toPrice(20) : toPrice(0);
-  let taxPrice = toPrice(0.20 * itemsPrice);
+  let itemsPrice = toPrice(data.reduce((a, c) => a + c.qty * c.price, 0));
+  let shippingPrice = itemsPrice > 200 ? toPrice(0) : toPrice(20);
+  let taxPrice = toPrice(0.2 * itemsPrice);
   let totalPrice = itemsPrice + shippingPrice + taxPrice;
 
   const placeOrderHandler = () => {
@@ -30,10 +30,14 @@ export default function PlaceOrderScreen(props) {
               <div className="card card-body">
                 <h2>Shipping</h2>
                 <p className="gap">
-                  <div><strong>Name:</strong> {shippingDetails.fullName}</div>
-                  <div><strong>Address: </strong> {shippingDetails.address},
-                  {shippingDetails.city}, {shippingDetails.postalCode}
-                  ,{shippingDetails.country}</div>
+                  <div>
+                    <strong>Name:</strong> {shippingDetails.fullName}
+                  </div>
+                  <div>
+                    <strong>Address: </strong> {shippingDetails.address},
+                    {shippingDetails.city},{shippingDetails.postalCode},
+                    {shippingDetails.country}
+                  </div>
                 </p>
               </div>
             </li>

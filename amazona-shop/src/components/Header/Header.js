@@ -1,11 +1,12 @@
 import React from "react";
 import Badge from "@material-ui/core/Badge";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import AssignmentIndIcon from "@material-ui/icons/AssignmentInd";
 import { makeStyles } from "@material-ui/core";
 import { connect } from "react-redux";
 import { signout } from "../../store/actions/user-actions";
+import SearchBox from "../SearchBox/SearchBox";
 
 const useStyles = makeStyles((theme) => ({
   size: {
@@ -20,18 +21,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Header({ cart, user, dispatch }) {
+function Header({ cart, user, dispatch, history }) {
   const classes = useStyles();
 
   const signoutHandler = () => {
-    dispatch(signout())
-  }
+    dispatch(signout());
+  };
   return (
     <header className="row">
       <div>
         <Link className="brand" to="/">
           Amazing Shop
         </Link>
+      </div>
+      <div>
+        <Route>
+          <SearchBox history={history} />
+        </Route>
       </div>
       <div className="align">
         <Link to="/cart">
@@ -45,7 +51,9 @@ function Header({ cart, user, dispatch }) {
         </Link>
         {user ? (
           <div className="dropdown">
-            <Link to="#">{user.name} <i className="fa fa-caret-down"></i></Link>
+            <Link to="#">
+              {user.name} <i className="fa fa-caret-down"></i>
+            </Link>
             <ul className="dropdown-content">
               <li>
                 <Link to="#signout" onClick={signoutHandler}>
@@ -55,7 +63,30 @@ function Header({ cart, user, dispatch }) {
             </ul>
           </div>
         ) : (
-          <Link to="/signin"><AssignmentIndIcon className={classes.icon} /></Link>
+          <Link to="/signin">
+            <AssignmentIndIcon className={classes.icon} />
+          </Link>
+        )}
+        {user && user.isAdmin && (
+          <div className="dropdown">
+            <Link to="#admin">
+              Admin <i className="fa fa-caret-down"></i>
+            </Link>
+            <ul className="dropdown-content">
+              <li>
+                <Link to="/dashboard">Dashboard</Link>
+              </li>
+              <li>
+                <Link to="/productlist">Products</Link>
+              </li>
+              <li>
+                <Link to="/orderlist">Orders</Link>
+              </li>
+              <li>
+                <Link to="/userlist">Users</Link>
+              </li>
+            </ul>
+          </div>
         )}
       </div>
     </header>

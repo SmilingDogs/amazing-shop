@@ -1,0 +1,40 @@
+/*todo Размеры отдельного слайда */
+.img {
+  height: 400px;
+  width: 100%;
+  object-fit: cover;
+}
+/*todo Ограничение ширины слайдера - ОБЯЗАТЕЛЬНО! */
+.slider-container {
+  margin: 0 auto;
+  width: 75%;
+}
+
+.slick-prev,
+.slick-next {
+  position: absolute;
+}
+.slick-prev {
+  left: -50px;
+}
+/* .slick-next {
+  right: 50px;
+} */
+.slick-prev::before {
+  font-size: 4rem;
+}
+
+.slick-next::before {
+  font-size: 4rem;
+}
+
+.slick-arrow::before {
+  color: #444;
+}
+
+button.slick-arrow.slick-prev {
+  border: none;
+}
+button.slick-arrow.slick-next {
+  border: none;
+}

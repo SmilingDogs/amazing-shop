@@ -9,14 +9,15 @@ import axios from "axios";
 
 export const addToCartAction = (productID, qty) => (dispatch, getState) => {
   axios(`/api/products/${productID}`).then((res) => {
+    const {name, image, price, countInStock, _id} = res.data
     dispatch({
       type: CART_ADD_ITEM,
       payload: {
-        name: res.data.name,
-        image: res.data.image,
-        price: res.data.price,
-        countInStock: res.data.countInStock,
-        product: res.data._id, //* here product === _id (for the database needs)
+        name,
+        image,
+        price,
+        countInStock,
+        product:_id, //* here product === _id (for the database needs)
         qty,
       },
     });
@@ -26,7 +27,7 @@ export const addToCartAction = (productID, qty) => (dispatch, getState) => {
 export const removeFromCartAction = (removeID) => (dispatch, getState) => {
   dispatch({
     type: CART_REMOVE_ITEM,
-    payload: removeID, //*to pass removeID to reducer
+    payload: removeID, //* removing from Cart by id(remveID)
   });
   localStorage.setItem("cart", JSON.stringify(getState().cart.data));
 };

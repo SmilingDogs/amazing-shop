@@ -6,7 +6,7 @@ import {
 
 const INITIAL_STATE = {
   isLoading: "",
-  products: [],
+  data: [],
   error: "",
 };
 
@@ -16,7 +16,7 @@ const reducer = (state = INITIAL_STATE, action) => {
       return { ...state, isLoading: true };
 
     case PRODUCTS_REQUEST_SUCCESS:
-      return { ...state, isLoading: false, products: action.payload };
+      return { ...state, isLoading: false, data: action.payload };
 
     case PRODUCTS_REQUEST_FAIL:
       return { ...state, isLoading: false, error: action.payload };

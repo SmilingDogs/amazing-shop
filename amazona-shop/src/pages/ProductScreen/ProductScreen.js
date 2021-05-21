@@ -26,11 +26,11 @@ function ProductScreen({ history }) {
   }
 
   return (
-    <main>
+    <div>
       {isLoading ? (
         <Loader />
       ) : error ? (
-        <ErrorMessage variant="danger" loadingError={error} />
+        <ErrorMessage variant="danger">{error}</ErrorMessage>
       ) : (
         <div>
           <Link to="/">Back to Products</Link>
@@ -83,14 +83,14 @@ function ProductScreen({ history }) {
                   {data.countInStock > 0 && (
                     <>
                       <div className="cartItem__qty">
-                        <label htmlFor="qty">Qty:</label>
+                        <label htmlFor="qty">Qty:</label> {/*label must have htmlFor */}
                         <input className="cartItem__input"
                           type="number"
                           id="qty"
                           min={1}
                           max={data.countInStock}
                           name="qty"
-                          value={qty}
+                          value={qty} //todo покзывает значение переменной qty */
                           onChange={e => setQty(e.target.value)}
                         />
                       </div>
@@ -105,7 +105,7 @@ function ProductScreen({ history }) {
           </div>
         </div>
       )}
-    </main>
+    </div>
   );
 }
 export default ProductScreen;

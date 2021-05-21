@@ -12,7 +12,7 @@ userRouter.get(
   "/seed",
   expressAsyncHandler(async (req, res) => {
     // await User.deleteMany({}); //* удаляет предыдущих юзеров, чтобы небыло дубликатов и ошибки
-    const createdUsers = await User.insertMany(data.users); //* inserts users array [data.users] inside users Collection in MongoDB
+    const createdUsers = await User.insertMany(data.users); //* inserts users array [data.users] inside users Collection in MongoDB from data.js
     res.send({ createdUsers });
   })
 );

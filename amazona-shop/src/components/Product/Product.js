@@ -2,7 +2,7 @@ import React from "react";
 import Rating from "../Rating/Rating";
 import {Link} from 'react-router-dom';
 
-function ProductItem({ product }) {
+function Product({ product }) {
   return (
     <div className="card">
       <Link to={`product/${product._id}`}>
@@ -18,4 +18,4 @@ function ProductItem({ product }) {
     </div>
   );
 }
-export default ProductItem;
+export default Product;

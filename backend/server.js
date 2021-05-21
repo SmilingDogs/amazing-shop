@@ -1,9 +1,11 @@
 import express from "express";
 import mongoose from "mongoose";
-//* import data from "./data.js"; уже не нужен, данные берутся с MongoDB
+import path from 'path';
+//! import data from "./data.js"; уже НЕ НУЖЕН, данные берутся с MongoDB
 import dotenv from 'dotenv';
 import userRouter from "./routers/userRouter.js";
 import productRouter from "./routers/productRouter.js";
+import uploadRouter from "./routers/uploadRouter.js";
 
 dotenv.config();
 
@@ -31,9 +33,13 @@ mongoose.connect(process.env.MONGODB_URL || "mongodb://localhost/amazona", {
 //   }
 // });
 
-//todo Серверы (2) для users,products - при запросе отвечает userRouter
+//todo Серверы (3) для users,products, uploads - пре запросе API отвечает соотвествующий Роутер
+app.use('/api/uploads', uploadRouter);
 app.use("/api/users", userRouter);
 app.use('/api/products', productRouter);
+
+const __dirname = path.resolve();
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 
 app.get("/", (req, res) => {
   res.send("Server is ready");
@@ -44,7 +50,7 @@ app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message });
 });
 
-//todo Это вывод в консоль порта на котром работает бекенд
+//todo Это вывод в консоль порта на котором работает бекенд
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
   console.log(`Serving at http://localhost:${port}`);
