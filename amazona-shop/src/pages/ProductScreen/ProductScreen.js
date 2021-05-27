@@ -10,7 +10,8 @@ import Rating from "../../components/Rating/Rating";
 function ProductScreen({ history }) {
   const [qty, setQty] = useState(1)
   const dispatch = useDispatch()
-  const productID  = useParams().id //todo productID === props.match.params.id -> получаем productID из АДРЕСНОЙ СТРОКИ!
+  const  {id: productID} = useParams() //todo id === props.match.params.id -> получаем id из АДРЕСНОЙ СТРОКИ!
+  console.log(productID); // todo {id: productID} иожно и так, чтобы испольщовать другое название для id.
 
   const { isLoading, data, error } = useSelector(state => state.product);
   //todo подключаемся к Стору

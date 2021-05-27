@@ -67,6 +67,21 @@ function Header({ cart, user, dispatch, history }) {
             <AssignmentIndIcon className={classes.icon} />
           </Link>
         )}
+        {user && user.isSeller && (
+          <div className="dropdown">
+            <Link to="#admin">
+              Seller <i className="fa fa-caret-down"></i>
+            </Link>
+            <ul className="dropdown-content">
+              <li>
+                <Link to="/productlist/seller">Products</Link>
+              </li>
+              <li>
+                <Link to="/orderlist/seller">Orders</Link>
+              </li>
+            </ul>
+          </div>
+        )}
         {user && user.isAdmin && (
           <div className="dropdown">
             <Link to="#admin">

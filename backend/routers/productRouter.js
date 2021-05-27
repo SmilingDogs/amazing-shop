@@ -2,7 +2,7 @@ import express from "express";
 import expressAsyncHandler from "express-async-handler";
 import data from "../data.js"; //todo mandatory .js!
 import Product from "../models/productModel.js"; //todo mandatory .js!
-import { isAdmin, isAuth } from '../utils.js';
+import { isAdmin, isAuth, isSellerOrAdmin } from '../utils.js';
 
 const productRouter = express.Router();
 // todo Product.find({}) === returns all products (objects) и отправить на Фронт
@@ -45,10 +45,11 @@ productRouter.get(
 productRouter.post(
   '/',
   isAuth,
-  isAdmin,
+  isSellerOrAdmin,
   expressAsyncHandler(async (req, res) => {
     const product = new Product({
-      name: 'sample product ' + Date.now(),
+      name: 'sample name ' + Date.now(),
+      seller: req.user._id,
       image: '/images/p1.jpg',
       price: 0,
       category: 'sample category',
@@ -66,7 +67,7 @@ productRouter.post(
 productRouter.put(
   '/:id',
   isAuth,
-  isAdmin,
+  isSellerOrAdmin,
   expressAsyncHandler(async (req, res) => {
     const productId = req.params.id;
     const product = await Product.findById(productId);

@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import Loader from "../../components/Loader/Loader";
 import {
@@ -14,6 +13,7 @@ import {
 } from "../../store/actions/product-actions";
 
 export default function AdminProductsScreen(props) {
+  const sellerMode = props.match.path.indexOf('/seller') >= 0;
   const productList = useSelector((state) => state.allProducts);
   const { isLoading, error, data } = productList;
 
@@ -25,7 +25,7 @@ export default function AdminProductsScreen(props) {
     product: createdProduct,
   } = newProduct;
   const dispatch = useDispatch();
-  const history = useHistory();
+
 
   const productDelete = useSelector((state) => state.productDelete);
   const {
@@ -33,17 +33,24 @@ export default function AdminProductsScreen(props) {
     error: errorDelete,
     success: successDelete,
   } = productDelete;
-
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo } = userSignin;
   useEffect(() => {
     if (successCreate) {
       dispatch({ type: PRODUCT_CREATE_RESET });
-      history.push(`/product/${createdProduct._id}/edit`);
+      props.history.push(`/product/${createdProduct._id}/edit`);
     }
     if (successDelete) {
       dispatch({ type: PRODUCT_DELETE_RESET });
     }
-    dispatch(loadProducts());
-  }, [createdProduct, dispatch, history, successCreate, successDelete]);
+    dispatch(loadProducts({ seller: sellerMode ? userInfo._id : '' }));
+  }, [createdProduct,
+    dispatch,
+    props.history,
+    sellerMode,
+    successCreate,
+    successDelete,
+    userInfo._id,]);
 
   const deleteHandler = (productId) => {
     /// TODO: dispatch delete action

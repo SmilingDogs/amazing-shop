@@ -7,18 +7,17 @@ import { loadProducts } from "../../store/actions/product-actions";
 import SimpleSlider from "../../components/SimpleSlider/SimpleSlider";
 import Product from "../../components/Product/Product";
 
-
 function HomeScreen() {
   const dispatch = useDispatch(); //todo получили функцию dispatch. Подключили Store. 2 способом -  через Хуки
   const { isLoading, data, error } = useSelector((state) => state.allProducts); //todo - обратились к Store и получили все нужные переменные из state.allProducts
 
   useEffect(() => {
-    dispatch(loadProducts());
+    dispatch(loadProducts({}));
   }, [dispatch]);
   //todo useEffect вызывает action loadProducts (карточек прожуктов)
   return (
     <div>
-    <SimpleSlider data={data} />
+      <SimpleSlider />
       {isLoading ? (
         <Loader />
       ) : error ? (

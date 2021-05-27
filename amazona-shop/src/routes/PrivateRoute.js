@@ -8,7 +8,7 @@ function PrivateRoute({ children, ...rest }) {
   return (
     <Route
       {...rest}
-      render={() => (userInfo ? { children } : <Redirect to="/signin" />)}
+      render={() => userInfo ?  children : <Redirect to="/signin" />}
     ></Route>
   );
 }

@@ -5,6 +5,7 @@ import PaymentMethodScreen from "../pages/PaymentMethodScreen/PaymentMethodScree
 import PlaceOrderScreen from "../pages/PlaceOrderScreen/PlaceOrderScreen";
 import ProductScreen from "../pages/ProductScreen/ProductScreen";
 import RegisterScreen from "../pages/RegisterScreen/RegisterScreen";
+import { SaleScreen } from "../pages/SaleScreen/SaleScreen";
 import SearchScreen from "../pages/SearchScreen/SearchScreen";
 import ShippingAddressScreen from "../pages/ShippingAddressScreen/ShippingAddressScreen";
 import SigninScreen from "../pages/SigninScreen/SigninScreen";
@@ -57,5 +58,10 @@ export const publicRoutes = [
     name: "Поиск",
     path: "/search/name/:name?", //todo :name? means :name is optional
     Component: SearchScreen
+  },
+  {
+    name: "Акция",
+    path: "/products/sale/:name", //todo :name? means :name is optional
+    Component: SaleScreen
   },
 ];
