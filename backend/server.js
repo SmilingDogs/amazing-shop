@@ -40,10 +40,12 @@ app.use('/api/products', productRouter);
 
 const __dirname = path.resolve();
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
+app.use(express.static(path.join(__dirname, '/amazona-shop/build')));
+app.get('*', (req, res) => res.sendFile(path.join(__dirname, '/amazona-shop/build/index.html')));
 
-app.get("/", (req, res) => {
-  res.send("Server is ready");
-});
+// app.get("/", (req, res) => {
+//    res.send("Server is ready");
+// });
 
 //todo Сервер для показа ошибок Users. This is an error catching middleware, errors are sent to Frontend
 app.use((err, req, res, next) => {
