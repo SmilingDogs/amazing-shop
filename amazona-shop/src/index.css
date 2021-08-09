@@ -10,9 +10,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-#root {
+/* #root {
   height: 100%;
-}
+} */
 
 /* Layout */
 
@@ -29,6 +29,12 @@ body {
 header {
   grid-area: header;
   background-color: #203040;
+
+}
+.fixed {
+  position: fixed;
+  width: 100%;
+  z-index: 10;
 }
 main {
   grid-area: main;
@@ -49,6 +55,7 @@ footer {
 h1 {
   font-size: 1.8rem;
   padding: 1rem 0;
+  text-align: center;
 }
 h2 {
   font-size: 1.6rem;
@@ -136,6 +143,11 @@ a.brand {
 }
 .row.top {
   align-items: flex-start;
+
+}
+.down {
+  position: relative;
+  top: 150px;
 }
 .col-1 {
   flex: 1;

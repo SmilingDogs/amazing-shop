@@ -29,7 +29,7 @@ function CartScreen({ dispatch, history, cart }) {
     history.push('/signin?redirect=shipping'); //todo переход на страницу http://localhost:3000/signin?redirect=shipping'
   };
   return (
-    <div className="row top">
+    <div className="row top down">
       <div className="col-2">
         <h1>Shopping Cart</h1>
         {cart.length === 0 ? (
@@ -87,8 +87,8 @@ function CartScreen({ dispatch, history, cart }) {
           <ul>
             <li>
               <h2>
-                Subtotal ({cart.reduce((a, i) => a + i.qty, 0)} items) : $
-                {cart.reduce((a, i) => a + i.price * i.qty, 0)}
+                Subtotal {cart.reduce((a, i) => a + +i.qty, 0)} items : $
+                {cart.reduce((a, i) => a + +i.price * +i.qty, 0)}
               </h2>
             </li>
             <li>
