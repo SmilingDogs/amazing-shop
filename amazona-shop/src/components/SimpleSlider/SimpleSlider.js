@@ -32,7 +32,7 @@ export default function SimpleSlider() {
 
   return (
     <div className="slider-container">
-      <h2> React-Slick</h2>
+      
       <Slider {...settings}>
         {sliderData.map((slide) => (
           <Link to={`products/sale/${slide.name}`} key={slide._id}>

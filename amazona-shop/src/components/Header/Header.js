@@ -28,7 +28,7 @@ function Header({ cart, user, dispatch, history }) {
     dispatch(signout());
   };
   return (
-    <header className="row fixed">
+    <header className="row">
       <div>
         <Link className="brand" to="/">
           Amazing Shop
