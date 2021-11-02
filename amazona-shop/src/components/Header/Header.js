@@ -24,6 +24,8 @@ const useStyles = makeStyles((theme) => ({
 function Header({ cart, user, dispatch, history }) {
   const classes = useStyles();
 
+  const userLocal = JSON.parse(localStorage.getItem("userInfo"))
+ 
   const signoutHandler = () => {
     dispatch(signout());
   };
@@ -49,10 +51,10 @@ function Header({ cart, user, dispatch, history }) {
             <ShoppingCartIcon className={classes.icon} />
           </Badge>
         </Link>
-        {user ? (
+        {user || userLocal ? (
           <div className="dropdown">
             <Link to="#">
-              {user.name} <i className="fa fa-caret-down"></i>
+              {user ? user.name : userLocal.name} <i className="fa fa-caret-down"></i>
             </Link>
             <ul className="dropdown-content">
               <li>
