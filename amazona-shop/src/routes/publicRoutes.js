@@ -60,6 +60,11 @@ export const publicRoutes = [
     Component: SearchScreen
   },
   {
+    name: "С поиска на страницу Продукта",
+    path: "/search/name/product/:id",
+    Component: ProductScreen
+  },
+  {
     name: "Акция",
     path: "/products/sale/:name", //todo :name? means :name is optional
     Component: SaleScreen

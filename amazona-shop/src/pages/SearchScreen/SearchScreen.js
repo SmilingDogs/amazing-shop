@@ -17,23 +17,23 @@ export default function SearchScreen() {
   }, [dispatch, name]);
   return (
     <div>
-      <div className="row">
+      <div className="row center">
         {isLoading ? (
           <Loader></Loader>
         ) : error ? (
           <ErrorMessage variant="danger">{error}</ErrorMessage>
         ) : (
-          <div>{data.length} Results</div>
+          <div className="search-results">{data.length} Results</div>
         )}
       </div>
-      <div className="row top">
-        <div className="col-1">
+      <div className="search-items">
+        <div>
           <h3>Department</h3>
           <ul>
             <li>Category 1</li>
           </ul>
         </div>
-        <div className="col-3">
+        <div>
           {isLoading ? (
             <Loader></Loader>
           ) : error ? (
@@ -41,7 +41,7 @@ export default function SearchScreen() {
           ) : (
             <>
               {data.length === 0 && (
-                <ErrorMessage>No Product Found</ErrorMessage>
+                <ErrorMessage variant="danger">No Product Found</ErrorMessage>
               )}
               <div className="row center">
                 {data.map((product) => (
