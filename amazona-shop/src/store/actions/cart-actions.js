@@ -21,13 +21,14 @@ export const addToCartAction = (productID, qty) => (dispatch, getState) => {
         qty,
       },
     });
+    localStorage.setItem("cart", JSON.stringify(getState().cart.data));
   });
-  localStorage.setItem("cart", JSON.stringify(getState().cart.data));
+
 };
 export const removeFromCartAction = (removeID) => (dispatch, getState) => {
   dispatch({
     type: CART_REMOVE_ITEM,
-    payload: removeID, //* removing from Cart by id(remveID)
+    payload: removeID, //* removing from Cart by id(removeID)
   });
   localStorage.setItem("cart", JSON.stringify(getState().cart.data));
 };

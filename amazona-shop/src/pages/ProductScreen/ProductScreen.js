@@ -11,8 +11,6 @@ function ProductScreen({ history }) {
   const [qty, setQty] = useState(1)
   const dispatch = useDispatch()
   const  {id: productID} = useParams() //todo id === props.match.params.id -> получаем id из АДРЕСНОЙ СТРОКИ!
-  
-
   const { isLoading, data, error } = useSelector(state => state.product);
   //todo подключаемся к Стору
 

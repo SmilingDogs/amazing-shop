@@ -25,10 +25,11 @@ function Header({ cart, user, dispatch, history }) {
   const classes = useStyles();
 
   const userLocal = JSON.parse(localStorage.getItem("userInfo"))
- 
+
   const signoutHandler = () => {
     dispatch(signout());
   };
+  
   return (
     <header className="row">
       <div>
